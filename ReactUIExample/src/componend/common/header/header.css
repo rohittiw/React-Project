@@ -1,0 +1,69 @@
+.navbar {
+  padding-bottom: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.font-bold {
+  font: 700 18px "pacificoregular" !important;
+}
+
+.icon-padding {
+  padding-right: 10px;
+  width: auto !important;
+}
+
+.btn:focus,
+.btn.focus {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.border-bottom-header {
+  border-bottom: 4px solid #ececec;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.font-center-heading {
+  font: 500 36px "pacificoregular", Arial, sans-serif !important;
+  margin-right: 45%;
+}
+
+@media screen and (max-width: 576px) {
+  .pointer {
+    width: 30%;
+    width: 100%;
+  }
+  .mobile-hide {
+    display: none;
+  }
+  .font-center-heading {
+    font: 500 18px "Pacifico", Arial, sans-serif !important;
+    margin-right: 0;
+  }
+}
+
+@media screen and (min-width: 577px) and (max-width: 1024px) {
+  .font-center-heading {
+    font: 500 24px "Pacifico", Arial, sans-serif !important;
+    margin-right: 0;
+  }
+}
