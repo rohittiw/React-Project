@@ -1,0 +1,166 @@
+@import "base/config/typography";
+
+/* ------------------------------------*\
+  VARIABLES USED ACROSS THE CSS MODULES
+\*------------------------------------ */
+
+// MEDIA QUERY BREAKPOINTS
+/* stylelint-disable */
+$breakpoints: (
+  phonePortrait: 480px,
+  phoneLandscape: 640px,
+  tabletPortrait: 768px,
+  tabletLandscape: 1024px,
+  desktopSmall: 1200px
+);
+/* stylelint-enable */
+
+//Unit Variables
+$x: 8px !default;
+$container-radius: 2px !default;
+
+//accordian
+$accordianInnerVerticalSpacing: 2 * $x !default;
+
+// main layout
+$main-top-indent: 5 * $x !default;
+$main-top-indent-phone: 3 * $x !default;
+
+//override the border Radius for the app
+$baseBorderRadius: 2px !default;
+
+// Sidebar (wizard navigation)
+$sidebarResponsiveWidth: 210px !default;
+$maximumPageWidth: 90em !default;
+$pageSectionVerticalSpacing: 30px !default;
+// 18, 4 pixels are rendering artifacts (can fix later).
+$buttonHorizontalSpacing: 2 * $x !default;
+$buttonTopMargin: 7.5 * $x !default;
+$buttonTopMarginMobile: 0 !default;
+$buttonVericalPadding: 4 * $x !default;
+
+// FORMS
+$inputVerticalPadding: 0.5em !default;
+$inputHorizontalPadding: 0.6em !default;
+$inputBigVerticalPadding: 1.3em !default;
+$inputBigHorizontalPadding: 20px !default;
+$inputBorder: 1px !default;
+$inputBorderRadius: $x/4 !default;
+$controlIndentWidth: 44px !default;
+
+$pageHorizontalPadding: 50px !default;
+$verticalSpacingBetweenH1AndContent: 27px !default;
+
+$pageSectionIndent: 30px !default;
+$pageSectionIndentMobile: $pageSectionIndent/2 !default;
+
+$defaultBoxPadding: 20px 30px !default;
+
+$inputErrorFocusedBoxShadow: 0 0 5px 0 lighten($red-color, 25%) !default;
+
+// outline restoration is used when element has to have a focus state
+// by default all elements outline width is set to 0.
+$default-outline-width: 3px !default;
+
+//Header
+$headerHeight: 68px !default;
+$headerNavHeight: 34px !default;
+$headerHorPadding: 30px !default;
+
+//tabs
+$spacingBetweenHeadingsAndContentsInTabs: 23px !default;
+
+// Loader
+$gw-progress-size: 1.2em !default;
+$gw-loader-top-margin: $gw-progress-size/2;
+
+// Buttons
+$btn-border-width: 0.067rem !default;
+$btn-border-width-thick: 2px !default;
+$btn-font-size: $gw-base-font-size !default;
+$btn-line-height: $gw-base-font-size !default;
+$btn-height: 2.33*$gw-base-font-size !default;
+$btn-border-radius: 2px !default;
+$btn-min-width: 19 * $x !default;
+$btn-min-width-narrow: 10 * $x !default;
+$btn-min-width-icon: 3 * $x !default;
+$btn-text-shadow: 0 0 10px rgba($black-color, 0.2) !default;
+
+$btn-vert-padding: round(( $btn-height - $btn-line-height ) /2) !default;
+$btn-with-border-vert-padding: $btn-vert-padding - $btn-border-width;
+$btn-hor-padding: 15px !default;
+
+$btn-flat-icon-hor-margin: 3px !default;
+
+$btn-transition-time: 0.25s !default;
+
+// Button icon
+$btn-icon-hor-margin: 5px !default;
+$btn-icon-font-size: $gw-base-font-size + 0.1 !default;
+
+// Boxes
+$boxes-base-line-height: 1.5;
+
+// Tables
+$tableCellPadding: 20px !default;
+$tableFullSidePadding: 42px !default;
+
+// Other
+$default-spacing: 18px !default;
+
+// Icon Button
+$gw-icon-button-size: 32px !default;
+
+/* ------------------------------------*\
+  GRID Layout
+\*------------------------------------ */
+$gw-grid-column-count: 12;
+$gw-grid-gutter: 15px;
+$gw-grid-classes-prefix: '.gw-col-';
+
+/* *
+Breakpoints for grid layout
+Order is important- from smaller screens to bigger
+
+Syntax:
+(
+  'media-query-expression': (list, of, classes)
+)
+*/
+/* stylelint-disable */
+$gw-grid-breakpoints: (
+  // phone
+        '>0px': ('phone', 'phone-portrait'),
+        '>phonePortrait': ('phone-landscape'),
+  // tablet
+        '>phoneLandscape': ('tablet', 'tablet-portrait'),
+        '>tabletPortrait': ('tablet-landscape'),
+  // desktop
+        '>tabletLandscape': ('desktop', 'desktop-small'),
+        '>desktopSmall': ('desktop-large')
+);
+/* stylelint-enable */
+
+// row
+$gw-row-horizontal-gap: 2.5*$x !default;
+$gw-row-bottom-offset: $x*3 !default;
+
+//Checkboxes
+$gwCheckInputBorderSize: 1px !default;
+$gwCheckInputSize: 20px !default;
+$gwCheckInputIndent: 0.5em !default;
+$gwCheckInputTransitionTime: 0.1s !default;
+$gwCheckboxContent: "\f00c" !default;
+
+// Radios Binary
+$gw-radio-binary-btn-min-height: $x*3;
+$gw-radios-binary-layout-helper-height: 1px;
+$gw-radios-binary-margin: $x*3 0 $x*3 0;
+$gw-radios-binary-mobile-tablet-margin: 0 $x*2 $x $x*2;
+
+// GTP Common Variables
+$gw-gtp-panel-title-line-height: 20px !default;
+$gw-gtp-continue-button-bottom-margin: $x*2 !default;
+
+// GTC Common Variables
+$gw-price-diff-indicator-large-flavor-width: 60px !default;

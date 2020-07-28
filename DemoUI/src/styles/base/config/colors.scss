@@ -1,0 +1,44 @@
+
+
+//Primary Colors
+
+$primary-green-color: #00BC78 !default;
+$primar-black-color: #323539 !default;
+$primary-white-color: #FFFFFF !default;
+$primary-red-color: #F75816 !default;
+$primary-light-orange-color: #FFF2F1 !default;
+//Secondary color
+
+$secondary-blue-color: #3DD6D0 !default;
+$secondary-grey-color: #BBBCBC !default;
+$secondary-green-color: #ECF5F1 !default;
+//$secondary-light-grey-color: #E3E3E3 !default;
+$secondary-light-grey-color: #DBE0E3 !default;
+$secondary-lighter-grey-color: #F2F2F2 !default;
+$secondary-dark-grey-color: #737373 !default;
+$secondary-lightly-dark-grey-color: #97999B !default;
+$secondary-light-red-color: #FEEEE8 !default;
+
+$secondary-black-color: #323539 !default;
+$secondary-while-color: #FFFFFF !default;
+$secondary-light-blue-color: #F7FCFA !default;
+$secondary-dark-red-color: #FF0000 !default;
+
+// EXPORT ANY NEW COLOR VARIABLE ADDED SO IT CAN BE IMPORTED WITHIN THE JS FILES WHEN NEEDED
+:export {
+    primary_green: $primary-green-color;
+    primary_black: $primar-black-color;
+    primary_white: $primary-white-color;
+    secondary_blue: $secondary-blue-color;
+    secondary_grey: $secondary-grey-color;
+    secondary_green: $secondary-green-color;
+    secondary_light_grey: $secondary-light-grey-color;
+    secondary_lighter_grey: $secondary-lighter-grey-color;
+    secondary_dark_grey: $secondary-dark-grey-color;
+    secondary_black: $secondary-black-color;
+    secondary_while: $secondary-while-color;
+    secondary_light_blue: $secondary-light-blue-color;
+    secondary_lightly_dark_grey: $secondary-lightly-dark-grey-color;
+    primary-red: $primary-red-color;
+    secondary_dark_red:$secondary-dark-red-color;
+}

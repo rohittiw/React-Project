@@ -1,0 +1,82 @@
+
+.ind-claim {
+    border-radius: 2px;
+}
+
+
+.section-header {
+    color: rgb(255, 255, 255);
+    background: #00bc78;
+    padding: 10px;
+    font-weight: bold;
+}
+.lob-selected {
+    border: 1px solid #d0d7e1;
+    border-radius: 2px;
+    cursor: pointer;
+    margin: 0;
+    margin-left: 6%;
+    margin-bottom: 2%;
+    height: 50px;
+}
+.section-divider {
+    border: 1px solid #d0d7e1;
+}
+.lob-value {
+    margin: 0;
+    margin-left: 13%;
+}
+.lob-icon {
+    display: flex;
+    flex-direction: row;
+    color: #bbbcbb;
+}
+.support-text {
+   margin: 0;
+   display: flex;
+   width: 100%;
+   margin-left: 13%;
+}
+.lob-selected-arrow {
+    color: white;
+    background: #00bc78;
+    padding: 4px;
+    height: 48px !important;
+    margin-left: 24%;
+    padding-top: 2%;
+    width: 1.5em !important;
+}
+.claims-content {
+    background-color: #ffffff;
+    padding: 20px 0;
+}
+.marginTop1 {
+    margin-top: 1%;
+}
+.arrowColor {
+     color: #00bc78;
+     margin-top: 10px;
+}
+.marginLeft1 {
+    margin-left: 1%;
+}
+.care-professin {
+    background-color: rgb(242, 242, 242);
+    font-weight: bold;
+}
+.assigned-prfnls  {
+    margin: 0;
+    padding: 10px 5px;
+}
+.prsnl-arrow {
+    color: #419bf9;
+}
+.lob-type {
+    margin-left: 8%;
+}
+.faq-section {
+    margin-left: 5%;
+}
+.badge-class {
+    margin-top: 35%;
+}

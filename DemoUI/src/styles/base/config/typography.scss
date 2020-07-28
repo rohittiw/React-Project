@@ -1,0 +1,111 @@
+//setting font-size to 10px so that rems can be used more easily
+//so that 1.6rem == 16px
+$gw-root-font-size: 10px !default;
+
+//default base font size
+$gw-base-font-size: 1.5rem !default;
+
+//typographic scales - to be used by the customer or for data driven branding / theming
+/* stylelint-disable */
+$gw-scales-map: (
+        major-sixth: 3/5,
+        golden-ratio: 1/1.61803398875,
+        perfect-fifth: 2/3,
+        perfect-fourth: 3/4,
+        major-third: 1/1.25,
+        major-second: 1/1.125
+);
+/* stylelint-enable */
+
+@function scalable-font($name) {
+  $font: map-get($gw-scales-map, $name);
+
+  @return if($font, $font, map-get($gw-scales-map, golden-ratio));
+}
+
+//OPTIONS: select a typographic scale and define small text override option (true/false)
+
+$gw-font-scale: scalable-font(golden-ratio) !default;
+$gw-font-scale-mobile: scalable-font(perfect-fourth) !default;
+$gw-override-small-text: true !default;
+
+//font sizes variables
+
+//paragraph text - base for calculating all other sizes
+$gw-font-sm: $gw-base-font-size !default;
+
+/* stylelint-disable */
+@function pow($number, $exp) {
+  $value: 1;
+
+  @if $exp > 0 {
+    @for $i from 1 through $exp {
+      $value: $value * $number;
+    }
+  } @else if $exp < 0 {
+    @for $i from 1 through -$exp {
+      $value: $value / $number;
+    }
+  }
+
+  @return $value;
+}
+
+/* stylelint-enable */
+
+//text larger than paragraph
+$gw-font-md: $gw-base-font-size / $gw-font-scale !default;
+$gw-font-lg: $gw-base-font-size / pow($gw-font-scale, 2) !default;
+//different scale for mobile sizes
+//these variables should be used inside media queries for specific classes
+$gw-font-md-mobile: $gw-base-font-size / $gw-font-scale-mobile !default;
+$gw-font-lg-mobile: $gw-base-font-size / pow($gw-font-scale-mobile, 2) !default;
+
+//text smaller than paragraph
+$gw-font-xs: $gw-base-font-size * $gw-font-scale !default;
+$gw-font-xxs: $gw-font-xs * $gw-font-scale !default;
+
+@if $gw-override-small-text {
+  $gw-font-xs: 1.3rem;
+  $gw-font-xxs: 1.2rem;
+}
+
+@mixin getFontSize($scale, $size) {
+  font-size: $size / $scale;
+}
+
+// Base Font
+$base-font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif !default;
+$base-line-height: 1.3 !default;
+$facebook-font-family: Helvetica, Arial, sans-serif !default;
+
+// Headings
+$header-font-weight: bold !default;
+
+/////Light background colours
+
+$fontSizeLabel: $gw-base-font-size * 1.08 !default;
+$baseLineHeight: 1.428571429 !default;
+
+//weights for Source Sans Pro
+$gw-font-weight-thin: 100;
+$gw-font-weight-extra-light: 200;
+$gw-font-weight-light: 300;
+$gw-font-weight-regular: 400;
+$gw-font-weight-medium: 500;
+$gw-font-weight-bold: 600;
+$gw-font-weight-normal-bold: 700;
+$gw-font-weight-extra-bold: 800;
+$gw-font-weight-ultra-bold: 900;
+
+//Font size variables
+$font-xxl: 2.8rem !default;
+$font-xl: 2rem !default;
+$font-l: 1.8rem !default;
+$font-m: 1.4rem !default;
+$font-s: 1.3rem !default;
+$font-xs: 1.2rem !default;
+
+// Control Group
+$control-group-error-font-size: $gw-base-font-size - 0.1 !default;
+$control-group-error-font-weight: bold !default;

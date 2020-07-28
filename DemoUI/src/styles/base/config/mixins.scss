@@ -1,0 +1,525 @@
+@import "base/config/html5-input-types";
+@import "base/combined/colors";
+@import "base/combined/variables";
+
+$input-group-ctrl-margin: $x*3 0 5px 0 !default;
+$input-group-ctrl-input-border: 1px solid $grey-light-30-color !default;
+$input-group-ctrl-input-border-radius: 3px !default;
+
+/* Use for providing cache boosting for images */
+@mixin image-versioning($image, $width, $height, $bg-size-cover: false, $scale-factor: 1) {
+  display: inline-block;
+  width: $width*$scale-factor;
+  height: $height*$scale-factor;
+  background: image-url($image) no-repeat 0 0; // no-repeat to prevent scale bugs
+
+  @if ($bg-size-cover) {
+    background-size: cover;
+  }
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+@mixin absolute-position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@mixin whiteTextShadow() {
+  text-shadow: 0 1px 0 rgba($white-color, 0.5);
+}
+
+@mixin bgGrad($color1, $color2) {
+  background: $color2;
+  background-image: linear-gradient(to bottom, $color1, $color2);
+}
+
+@mixin lob-box($color) {
+  background: $color;
+  border: 1px solid darken($color, 5);
+
+  &:hover {
+    background: darken($color, 3);
+  }
+}
+
+@mixin lob-box-selected($color) {
+  background: $color;
+  border: 3px solid darken($color, 5);
+
+  &:hover {
+    background: darken($color, 3);
+  }
+}
+
+@mixin clearfix {
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+
+    /* For clearfixes inside tables. */
+    border-spacing: 0;
+  }
+}
+
+@mixin absolute-hidden {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+// display: none; affects accessibility
+// absolute position with e.g. top:-9999px; makes scroll jumping up after element becomes to be checked
+@mixin form-element-hidden {
+  visibility: hidden;
+  position: absolute; // without top, left etc. element stays on the same position
+}
+
+/*  Container with default box specification. */
+@mixin default-box-border() {
+  border: 1px solid $default-box-border-color;
+  border-radius: 3px;
+}
+
+/* * Default text on the portals. */
+@mixin common-data() {
+  color: $base-text-color;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* * Default label style. */
+@mixin common-label() {
+  color: $base-label-text-color;
+  font-weight: bold;
+  padding-right: 0.3em;
+}
+
+@mixin read-only-form-text() {
+  font-size: $gw-base-font-size;
+  opacity: 0.7;
+}
+
+/* ------------------------------------*\
+    TABLES
+\*------------------------------------ */
+
+/* *
+  Use to provide minimum height for table cells which can contain icon.
+  They will have same height even if they are empty.
+*/
+@mixin tableCellWithIconHeight($iconHeight) {
+  height: calc(#{$iconHeight} + 2 * #{$tableCellPadding});
+}
+
+// MIXIN to align table column with icon only
+@mixin table-icon-only-column($columnNumber) {
+  @include media('>tabletPortrait') {
+    th:nth-of-type(#{$columnNumber}) {
+      text-align: center;
+    }
+
+    td:nth-of-type(#{$columnNumber}) {
+      & > img,
+      & > button,
+      & > .gw-btn,
+      & > .gw-btn-primary,
+      & > .gw-aligner {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      & > .gw-aligner {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+/* Set table row horizontal padding. */
+@mixin table-row-hpadding($padding) {
+  @include media('>tabletPortrait') {
+    tr td:first-child,
+    tr th:first-child {
+      padding-left: $padding;
+    }
+
+    tr td:last-child,
+    tr th:last-child {
+      padding-right: $padding;
+    }
+  }
+}
+
+/*
+  Other section styles
+  It appears when e.g. user selects something which needs some details provided
+*/
+@mixin otherSection($topIndent: null, $transitionTime: 0.25s) {
+  .gw-other-section {
+    padding-top: $topIndent;
+    opacity: 1;
+
+    @include clearfix;
+
+    transition-property: opacity;
+    transition-duration: $transitionTime;
+
+    // NG-ANIMATE
+    &.ng-enter {
+      opacity: 0;
+
+      &.ng-enter-active {
+        opacity: 1;
+      }
+    }
+
+    &.ng-leave {
+      &.ng-leave-active {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+/*
+  Adds "text..." when there is not enough space for inner text
+*/
+@mixin overflowEllipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin fill($offset: 0) {
+  position: absolute;
+  left: $offset;
+  top: $offset;
+  right: $offset;
+  bottom: $offset;
+}
+
+/* --------------------/*
+  ANIMATIONS
+/* -------------------- */
+@mixin slideAppearance() {
+  transition-property: transform, max-height;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  transform: scaleY(0); // collapse animation
+  max-height: 0; // to prevent overlapping of the content under the box
+  overflow: hidden; // to prevent overlapping of the content under the box
+  transform-origin: 0 0;
+
+  &.gw-slide-appearance {
+    transform: scaleY(1); // collapse animation
+    max-height: 9999px; // to prevent overlapping of the content under the box
+  }
+}
+
+/* --------------------/*
+  MOBILE
+/* -------------------- */
+@mixin full-width-for-mobile {
+  @include media('<=tabletPortrait') {
+    width: 100%;
+    display: block;
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+
+    @content;
+  }
+}
+
+/// https://css-tricks.com/snippets/sass/opposite-direction-function/
+/// Returns the opposite direction of each direction in a list
+/// @author Hugo Giraudel
+/// @param {List} $directions - List of initial directions
+/// @return {List} - List of opposite directions
+
+/* stylelint-disable */
+@function opposite-direction($directions) {
+  $opposite-directions: ();
+
+  $direction-map: (
+          'top': 'bottom',
+          'right': 'left',
+          'bottom': 'top',
+          'left': 'right',
+          'center': 'center',
+          'ltr': 'rtl',
+          'rtl': 'ltr'
+  );
+
+  @each $direction in $directions {
+    $direction: to-lower-case($direction);
+
+    @if map-has-key($direction-map, $direction) {
+      $opposite-directions: append($opposite-directions, unquote(map-get($direction-map, $direction)));
+    } @else {
+      @warn "No opposite direction can be found for `#{$direction}`. Direction omitted.";
+    }
+  }
+
+  @return $opposite-directions;
+}
+
+/* stylelint-enable */
+
+//// https://css-tricks.com/snippets/sass/css-triangle-mixin/
+/// Triangle helper mixin
+/// @param {Direction} $direction - Triangle direction, either `top`, `right`, `bottom` or `left`
+/// @param {Length} $size [1em] - Triangle size
+/// @param {Color} $color [currentcolor] - Triangle color
+@mixin triangle($direction, $size: 1em, $color: $white-color) {
+  @if not index(top right bottom left, $direction) {
+    @error "Direction must be either `top`, `right`, `bottom` or `left`.";
+  }
+
+  width: 0;
+  height: 0;
+  content: '';
+  z-index: 2;
+  border-#{opposite-direction($direction)}: $size solid $color;
+
+  $perpendicular-borders: $size solid transparent;
+
+  /* stylelint-disable */
+  @if $direction == top or $direction == bottom {
+    border-left: $perpendicular-borders;
+    border-right: $perpendicular-borders;
+  } @else if $direction == right or $direction == left {
+    border-bottom: $perpendicular-borders;
+    border-top: $perpendicular-borders;
+  }
+  /* stylelint-enable */
+}
+
+/* ------------------------------------
+  MEDIA QUERIES MIXIN
+------------------------------------ */
+@import "~include-media/dist/include-media";
+
+/* ------------------------------------*\
+  HORIZONTAL SCROLLING BOX
+  // shows horizontal scroll if needed (when a parent box has smaller size than the current box)
+  // has to be changed on scroll horizontal menu when it is implemented
+\*------------------------------------ */
+@mixin horizontalScrollingBox($height) {
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: auto;
+  height: $height;
+
+  // prevent ancestors boxes shrinking
+  * {
+    flex-shrink: 0;
+  }
+
+  // prevent vertical aligning changing when scroll appears
+  > * {
+    height: $height;
+  }
+}
+
+/* ------------------------------------*\
+ CONTROL LABEL
+\*------------------------------------ */
+@mixin control-label-width($width) {
+  @include media('>tabletPortrait') {
+    .gw-control-label {
+      width: $width;
+    }
+
+    .gw-controls {
+      width: calc(100% - #{$width});
+      margin-left: 0;
+    }
+  }
+}
+
+/* ------------------------------------*\
+   SET PAGE BACKGROUND
+
+   Set background color
+   and images as background (if the name of the last is provided)
+\*------------------------------------ */
+@mixin set-page-background($page-bg-color, $path-to-img) {
+  .gw-snap-content {
+    background-color: $page-bg-color;
+
+    /* stylelint-disable */
+    @if $path-to-img != '' {
+      background-image: image-url($path-to-img);
+    } @else {
+      background-image: none; // reset
+    }
+    /* stylelint-enable */
+  }
+}
+
+/* ------------------------------------*\
+  GRID Layout
+\*------------------------------------ */
+
+/* *
+@public
+Sets a column styles
+
+@param $col-number {Number} from 1 to $row-number
+@param [$row-number] {Number} sets a number of grid columns in a row
+*/
+@mixin gw-grid-column($col-number, $row-number:$gw-grid-column-count) {
+  $_width: percentage($col-number/$row-number);
+
+  flex: 0 0 $_width;
+
+  // Add a `max-width` to ensure content within each column does not blow out the width of the column.
+  // Applies to IE10+ and Firefox.
+  max-width: $_width;
+}
+
+/* *
+@public
+Sets a gutter for a grid container
+
+@param [$gutter] {Size} configures gutter sizes for a particular grid
+*/
+@mixin gw-grid-container-gutter($gutter: null ) {
+  padding-left: $gw-grid-gutter;
+  padding-right: $gw-grid-gutter;
+}
+
+/* *
+@public
+Sets a gutter for a grid row
+
+@param [$gutter] {Size} configures gutter sizes for a particular grid
+*/
+@mixin gw-grid-row-gutter($gutter: null ) {
+  margin-left: -$gw-grid-gutter;
+  margin-right: -$gw-grid-gutter;
+
+  & > * {
+    padding-left: $gw-grid-gutter;
+    padding-right: $gw-grid-gutter;
+    width: 100%;
+  }
+}
+
+/* *
+@public
+Sets a column offset styles
+
+@param $col-number {Number} from 1 to $row-number
+@param [$row-number] {Number} sets a number of grid columns in a row
+*/
+@mixin gw-grid-offset($col-number, $row-number:$gw-grid-column-count) {
+  margin-left: percentage($col-number/$row-number);
+}
+
+/* ------------------------------------*\
+  Inputs
+\*------------------------------------ */
+@mixin gwInputSizing() {
+  width: 100%;
+  padding: $inputVerticalPadding $inputHorizontalPadding;
+  border: $inputBorder solid transparent;
+  height: 5 * $x;
+}
+
+@mixin gwLargeInputSizing() {
+  width: 100%;
+  padding: $inputBigVerticalPadding $inputBigHorizontalPadding;
+  border: $inputBorder solid transparent;
+  height: 8 * $x;
+}
+
+@mixin gwInput() {
+  @include gwInputSizing();
+
+  display: inline-block;
+  border-color: $grey-light-35-color;
+  border-radius: $inputBorderRadius;
+  background-color: $white-color;
+  color: $grey-dark-90-color;
+
+  /* Disabled inputs. */
+  &[disabled],
+  &[readonly] {
+    cursor: not-allowed;
+    background-color: $grey-light-20-color;
+    color: $grey-light-50-color;
+  }
+
+  &:focus {
+    border-color: lighten($brand-alt-01, 20%);
+    box-shadow: 0 0 5px 0 lighten($brand-alt-01, 20%);
+  }
+}
+
+/* ------------------------------------*\
+   Overrides Default Button Padding
+\*------------------------------------ */
+@mixin overrideBtnPadding($top, $left, $bottom, $right) {
+  padding: $top $left $bottom $right;
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:active {
+    padding: $top $left $bottom $right;
+  }
+}
+
+// add animations for ng-class
+@mixin class-animation-add($transition: 0.5s ease all) {
+  &,
+  #{&}-add-active {
+    @content;
+  }
+
+  #{&}-add {
+    transition: $transition;
+  }
+}
+
+@mixin class-animation-remove($transition: 0.5s ease all) {
+  #{&}-remove.#{&}-remove-active {
+    @content;
+  }
+
+  #{&}-remove {
+    transition: $transition;
+  }
+}
+
+@mixin input-group-ctrl() {
+  label {
+    color: $grey-light-50-color;
+    margin: $input-group-ctrl-margin;
+    display: inline-block;
+  }
+
+  .input {
+    box-shadow: none;
+    border: $input-group-ctrl-input-border;
+    border-radius: $input-group-ctrl-input-border-radius;
+  }
+}
+
+@mixin font-awesome-icon($icon) {
+  content: $icon;
+  font-size: var(--font-s);
+  font-family: FontAwesome;
+}

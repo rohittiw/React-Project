@@ -1,0 +1,60 @@
+.next-button:hover, .back-button {
+  padding: 10px 50px;
+  border-radius: 32px;
+  background: $primary-white-color;
+  border-width: 2px;
+  border-color: $primary-green-color;
+  color: $primary-green-color;
+  font-family: 'open_sansbold';
+}
+
+.back-button:hover, .next-button {
+  padding: 10px 50px;
+  border-radius: 32px;
+  background-color: $primary-green-color;
+  color: white;
+  font-family: 'open_sansbold';
+}
+
+.back-button:disabled, .next-button:disabled {
+  background-color: $secondary-grey-color;
+  color: white;
+  border: none;
+  cursor: none;
+}
+
+.quote-button:hover {
+  padding: 5px 18px;
+  border-radius: 32px;
+  background: $primary-white-color;
+  border-color: $primary-green-color;
+  color: $primary-green-color;
+}
+
+.quote-button, .quote-button:disabled {
+  padding: 5px 18px;
+  border-radius: 32px;
+  background-color: $primary-green-color;
+  color: $primary-white-color;
+  font-family: 'open_sansbold';
+}
+
+.quote-button:disabled {
+  cursor: not-allowed;
+}
+
+@media screen and (max-width : 965px) {
+  .quote-button {
+    padding: 2px 1px;
+    border-radius: 10px;
+    background-color: $primary-green-color;
+    color: white;
+    font-family: 'open_sansbold';
+  }
+  
+  .quote-button:hover {
+    background: $primary-white-color;
+    border-color: $primary-green-color;
+    color: $primary-green-color;
+  }
+}

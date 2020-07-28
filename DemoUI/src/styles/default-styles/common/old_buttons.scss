@@ -1,0 +1,508 @@
+@import './base.scss';
+
+$modal-button-min-width: 152px !default;
+$modal-button-mobile-min-width: 80px !default;
+$modal-button-margin: 16px !default;
+
+$icon-button-bottom-margin: 12px !default;
+$icon-button-size: 32px !default;
+
+$gw-btn-tile-width: 112px !default;
+$gw-btn-tile-height: 112px !default;
+$gw-btn-label-tile-width: 50px !default;
+$gw-btn-label-tile-height: 50px !default;
+$gw-btn-label-tile-font-size: 13px !default;
+
+/* ------------------------------------*\
+    COMMON STYLES
+\*------------------------------------ */
+// usual (secondary)
+.gw-btn,
+  // primary
+.gw-btn-primary {
+  display: inline-block;
+  background-color: $btn-bg;
+  border: $btn-border-width solid $btn-border-color;
+  box-shadow: 0 1px 1px 0 $btn-shadow-color;
+  font-size: $btn-font-size;
+  padding: $btn-vert-padding $btn-hor-padding;
+  border-radius: $btn-border-radius;
+  min-width: $btn-min-width;
+
+  @include media('<=tabletPortrait') {
+    min-width: $btn-min-width-narrow;
+  }
+
+  transition: min-width $btn-transition-time, min-height $btn-transition-time, background-color $btn-transition-time, color $btn-transition-time, border $btn-transition-time;
+  min-height: 5* $x;
+  // browsers default reset
+  margin: 0;
+  cursor: pointer;
+  // inherit- fix for Apple devices
+  font-family: inherit;
+  text-align: center;
+
+  // LINKS (<a/> elements)
+  &,
+  &:visited,
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+
+  // STATES
+  &:focus {
+    outline: auto $default-outline-width $theme-color;
+
+    &::-moz-focus-inner {
+      border-color: transparent;
+    }
+  }
+
+  &:disabled,
+  &.gw-disabled,
+  &[disabled] {
+    &,
+    &:hover,
+    &:active {
+      color: $white-color;
+      background-color: $btn-disabled-bg;
+      border: none;
+      padding: $btn-vert-padding $btn-hor-padding;
+      box-shadow: none;
+      cursor: default;
+      text-shadow: none;
+    }
+  }
+
+  // INNER ELEMENTS
+  .gw-btn-icon {
+    font-size: $btn-icon-font-size;
+    vertical-align: middle;
+    float: left;
+    clear: left;
+    margin-left: -$btn-icon-hor-margin;
+    margin-right: $btn-icon-hor-margin;
+  }
+
+  .gw-btn-icon-right {
+    font-size: $btn-icon-font-size;
+    margin-left: $btn-icon-hor-margin;
+  }
+}
+
+.gw-btn[data-flavor=dsb] {
+  border: 2px solid var(--gw-material-primary-color);
+  border-radius: $x * 5;
+  height: 10 * $x;
+  width: 50 * $x;
+  font-size: 3.2rem;
+  background-color: transparent;
+  color: var(--gw-material-primary-color);
+  box-shadow: none;
+  line-height: 22px;
+  font-weight: $gw-font-weight-bold;
+
+  &:hover {
+    color: var(--gw-material-primary-color);
+    background-color: var(--gw-grey-light-2);
+  }
+
+  &:disabled,
+  &.gw-disabled,
+  &[disabled] {
+    border: none;
+
+    &,
+    &:hover,
+    &:active {
+      --gw-button-primat-color-disabled: var(--gw-grey-light-4);
+
+      color: var(--gw-button-primat-color-disabled);
+      background-color: transparent;
+    }
+  }
+
+  @include media('<=tabletPortrait') {
+    width: 100%;
+    height: 6 * $x;
+    font-size: $font-xl + 0.4;
+  }
+}
+
+.gw-btn-primary[data-flavor=dsb] {
+  background-color: var(--gw-material-primary-color);
+  border-radius: $x * 5;
+  height: 10 * $x;
+  width: 50 * $x;
+  font-size: 3.2rem;
+  font-weight: $gw-font-weight-bold;
+  color: #fff;
+
+  &:hover {
+    --gw-btn-primary-hover-color: $btn-primary-hover-color;
+    --gw-btn-primary-hover-background-color: var(--gw-material-primary-color-darken);
+
+    background-color: var(--gw-btn-primary-hover-background-color);
+    color: var(--gw-btn-primary-hover-color);
+  }
+
+  &:disabled,
+  &.gw-disabled,
+  &[disabled] {
+    &,
+    &:hover,
+    &:active {
+      --gw-button-primary-color-disabled: $white-color;
+      --gw-button-primary-background-color-disabled: var(--gw-grey-light-4);
+
+      color: var(--gw-button-primary-color-disabled);
+      background-color: var(--gw-button-primary-background-color-disabled);
+    }
+  }
+
+  @include media('<=tabletPortrait') {
+    width: 100%;
+  }
+
+  @include media('<=tabletPortrait') {
+    width: 100%;
+    height: 6 * $x;
+    font-size: $font-xl + 0.4;
+  }
+}
+
+.gw-btn[data-flavor=material] {
+  border: none;
+  border-radius: $x * 4;
+  background-color: transparent;
+  color: var(--gw-material-primary-color);
+  box-shadow: none;
+
+  &:hover {
+    color: var(--gw-material-primary-color);
+    background-color: var(--gw-grey-light-2);
+  }
+
+  &:disabled,
+  &.gw-disabled,
+  &[disabled] {
+    &,
+    &:hover,
+    &:active {
+      --gw-button-primat-color-disabled: var(--gw-grey-light-4);
+
+      color: var(--gw-button-primat-color-disabled);
+      background-color: transparent;
+    }
+
+    @include media('<=tabletPortrait') {
+      width: 100%;
+    }
+
+    @include media('<phonePortrait') {
+      height: 48px;
+      width: 100%;
+      font-weight: $gw-font-weight-bold;
+      font-size: 15px;
+    }
+  }
+
+  @include media('<=tabletPortrait') {
+    width: 100%;
+  }
+
+  @include media('<phonePortrait') {
+    height: 48px;
+    width: 100%;
+    font-weight: $gw-font-weight-bold;
+    font-size: 15px;
+  }
+}
+
+.gw-btn-primary[data-flavor=material] {
+  background-color: var(--gw-material-primary-color);
+  border-radius: $x * 4;
+
+  &:hover {
+    --gw-btn-primary-hover-color: $btn-primary-hover-color;
+    --gw-btn-primary-hover-background-color: var(--gw-material-primary-color-darken);
+
+    background-color: var(--gw-btn-primary-hover-background-color);
+    color: var(--gw-btn-primary-hover-color);
+  }
+
+  &:disabled,
+  &.gw-disabled,
+  &[disabled] {
+    &,
+    &:hover,
+    &:active {
+      --gw-button-primary-color-disabled: $white-color;
+      --gw-button-primary-background-color-disabled: var(--gw-grey-light-4);
+
+      color: var(--gw-button-primary-color-disabled);
+      background-color: var(--gw-button-primary-background-color-disabled);
+    }
+  }
+}
+
+/* ------------------------------------*\
+    Flavor - narrow button
+\*------------------------------------ */
+.gw-btn__narrow,
+.gw-btn[flavor="narrow"],
+.gw-btn-primary__narrow,
+.gw-btn-primary[flavor="narrow"] {
+  min-width: $btn-min-width-narrow;
+}
+
+/* ------------------------------------*\
+    Flavor - icon button
+\*------------------------------------ */
+.gw-btn__icon,
+.gw-btn[data-flavor=icon],
+.gw-btn[flavor=icon],
+.gw-btn-primary__icon,
+.gw-btn-primary[data-flavor=icon] {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  min-width: $btn-min-width-icon;
+  padding: 0 $x 0 $x * 2;
+  border-radius: 50%;
+
+  &,
+  &:visited,
+  &:active {
+    background-color: transparent;
+    padding: 0 $x 0 $x * 2;
+  }
+
+  &:hover {
+    margin: 0;
+    border: $btn-border-width solid $btn-border-color;
+    padding: 0 $x 0 $x * 2;
+  }
+}
+
+/* ------------------------------------*\
+    USUAL (SECONDARY)
+\*------------------------------------ */
+.gw-btn {
+  color: $btn-color;
+  background-color: $btn-bg;
+  border: $btn-border-width solid $btn-border-color;
+  padding-top: $btn-with-border-vert-padding;
+  padding-bottom: $btn-with-border-vert-padding;
+
+  // LINKS (<a/> elements)
+  &,
+  &:visited,
+  &:hover,
+  &:active {
+    color: $btn-color;
+  }
+
+  // STATES
+  &:hover {
+    color: $btn-hover-color;
+    background-color: $btn-hover-bg;
+  }
+
+  &:active {
+    background-color: $btn-active-bg;
+  }
+}
+
+.gw-modal-btn {
+  min-width: $modal-button-min-width;
+  margin-left: $modal-button-margin;
+
+  @include media('<=phonePortrait') {
+    min-width: $modal-button-mobile-min-width;
+  }
+}
+
+/* ------------------------------------*\
+    PRIMARY
+\*------------------------------------ */
+.gw-btn-primary {
+  color: $btn-primary-color;
+  background-color: $btn-primary-bg;
+  border: none;
+  text-shadow: $btn-text-shadow;
+
+  // LINKS (<a/> elements)
+  &,
+  &:visited,
+  &:active {
+    color: $btn-primary-color;
+  }
+
+  // STATES
+  &:hover {
+    background-color: $btn-primary-hover-bg;
+    color: $btn-primary-hover-color;
+  }
+
+  &:active {
+    background-color: $btn-primary-active-bg;
+  }
+}
+
+/* ------------------------------------*\
+    FLAT BUTTONS
+\*------------------------------------ */
+$flatBtnHorPadding: 15px !default;
+$flatBtnHeight: 28px !default;
+
+.gw-btn-flat {
+  cursor: pointer;
+  font-size: $font-m;
+  padding: 0 $flatBtnHorPadding;
+  line-height: $flatBtnHeight;
+  border-radius: 2px;
+  background-color: $btn-flat-bg;
+  text-align: center;
+
+  .gw-icon {
+    display: inline-block;
+    margin-left: $btn-flat-icon-hor-margin;
+    $localFontSize: $gw-base-font-size + 0.6;
+
+    font-size: $localFontSize;
+    vertical-align: ($gw-base-font-size - $localFontSize)/2;
+  }
+
+  // STATES
+  &:hover {
+    background-color: $btn-flat-hover-bg;
+  }
+
+  &:active {
+    background-color: $btn-flat-active-bg;
+  }
+
+  &:focus {
+    outline: auto $default-outline-width $theme-color;
+
+    &::-moz-focus-inner {
+      border-color: transparent;
+    }
+  }
+}
+
+.gw-btn-flat-green {
+  color: $white-color;
+  background-color: $btn-flat-green-bg;
+
+  // STATES
+  &:hover {
+    background-color: $btn-flat-green-hover-bg;
+  }
+
+  &:active {
+    background-color: $btn-flat-green-active-bg;
+  }
+}
+
+/* ------------------------------------*\
+    Flavor - tertiary button
+\*------------------------------------ */
+.gw-btn__tertiary,
+.gw-btn[flavor="tertiary"] {
+  border: 0;
+  box-shadow: 0 0 0 0;
+  margin-left: 0;
+  margin-right: auto;
+
+  &:hover {
+    background-color: $grey-light-30-color;
+  }
+
+  &:disabled {
+    background-color: $white-color;
+    color: $grey-light-40-color;
+  }
+}
+
+.gw-btn__tertiary[data-flavor=dsb] {
+  border: 0;
+  text-align: center;
+
+  @include media('<=tabletPortrait') {
+    width: 100%;
+    text-align: center;
+  }
+
+  @include media('<=phonePortrait') {
+    margin: 2*$x 0 0 2*$x;
+    height: 48px;
+    width: 100%;
+    font-weight: $gw-font-weight-bold;
+    font-size: 24px;
+  }
+}
+
+/* ------------------------------------*\
+    Flavor - tile button
+\*------------------------------------ */
+.gw-btn__tile,
+.gw-btn[flavor="tile"] {
+  position: relative;
+  width: $gw-btn-tile-width;
+  height: $gw-btn-tile-height;
+  min-width: $gw-btn-tile-width;
+  margin-bottom: 8px;
+  border: 1px solid $btn-tile-border;
+  border-radius: 2px;
+  background-color: $btn-tile-bg;
+  color: $btn-tile-color;
+
+  .gw-btn-icon__top {
+    font-size: $icon-button-size;
+    vertical-align: middle;
+    margin-bottom: $icon-button-bottom-margin;
+  }
+
+  &:focus {
+    outline: none;
+
+    &::-moz-focus-inner {
+      border-color: transparent;
+    }
+  }
+}
+
+.gw-btn[flavor="tile"].gw-btn--selected {
+  background-color: $btn-selected-tile-bg;
+}
+
+.gw-btn-label__tile,
+.gw-btn-label[flavor="tile"] {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: $gw-btn-tile-width;
+  height: $gw-btn-label-tile-height;
+  line-height: $gw-btn-label-tile-height;
+  font-size: $gw-btn-label-tile-font-size;
+  color: $grey-dark-90-color;
+  text-align: center;
+}
+
+.next-button {
+  padding: 10px 50px;
+  border-radius: 32px;
+  background-color: $primary-green-color;
+  color: white;
+  
+}
+.next-button:disabled {
+  background-color: $secondary-grey-color;
+}
+.next-button:hover {
+  color: white;
+}
